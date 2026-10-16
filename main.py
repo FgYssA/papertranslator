@@ -11,10 +11,11 @@ from google.oauth2 import service_account
 # 環境変数の取得
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash").strip()
 GA4_PROPERTY_ID = os.environ.get("GA4_PROPERTY_ID", "").strip()
 GA4_CREDENTIALS_JSON = os.environ.get("GA4_CREDENTIALS_JSON", "").strip()
 
+# 設定値（モデルは gemini-3.8-flash に固定）
+GEMINI_MODEL = "gemini-3.8-flash"
 DATA_FILE = "docs/data.json"
 ARXIV_QUERY = "cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.CV"
 MAX_NEW_PAPERS = 2  # 毎朝2件の論文を処理
@@ -122,21 +123,13 @@ def analyze_with_gemini(paper, jina_content):
         }
     }
 
-    candidate_models = [GEMINI_MODEL, "gemini-1.5-flash", "gemini-2.0-flash"]
-    last_error = None
+    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    res = requests.post(endpoint, json=payload, timeout=60)
+    res.raise_for_status()
 
-    for model_name in candidate_models:
-        endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
-        res = requests.post(endpoint, json=payload, timeout=60)
-        if res.status_code == 404:
-            last_error = res
-            continue
-        res.raise_for_status()
-        result_json = res.json()
-        raw_text = result_json["candidates"][0]["content"]["parts"][0]["text"]
-        return json.loads(raw_text)
-
-    last_error.raise_for_status()
+    result_json = res.json()
+    raw_text = result_json["candidates"][0]["content"]["parts"][0]["text"]
+    return json.loads(raw_text)
 
 
 def send_paper_to_discord(item):
