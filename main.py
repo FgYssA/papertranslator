@@ -10,7 +10,7 @@ import requests
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "")
 # ご自身の環境に合わせてモデル名を指定（デフォルトは gemini-2.5-flash 等でも動作可能）
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 DATA_FILE_PATH = "docs/data.json"
 MAX_ITEMS_PER_RUN = 2  # 無料枠のレート制限を考慮し、1回の実行あたり2件ずつ蓄積
