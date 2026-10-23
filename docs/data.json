@@ -1,5 +1,63 @@
 [
   {
+    "url": "http://arxiv.org/abs/2610.31670v1",
+    "original_title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+    "published_date": "2026-10-22",
+    "ja_title": "ロボットを動かさずに性能評価！新指標S2",
+    "tags": [
+      "ロボティクス",
+      "基盤モデル",
+      "オフライン評価"
+    ],
+    "problem": "ロボット用基盤モデルの性能評価には、実機やシミュレータで実際に動かすクローズドループ試験が不可欠でした。しかしこの検証手法は計算コストや物理的リスク、膨大な運用時間がかかり、モデルの選定や改善サイクルを著しく遅延させていました。",
+    "mechanism": "本研究は、高品質な表現ほど異なる感覚モダリティが物理世界の共通構造へ収束するという「プラトニック表現仮説」に着目しました。提案手法「Sensorimotor Alignment（S^2）」は、画像などの感覚表現と実際の物理運動軌道の幾何学的整合性を測定するトレーニング不要のオフライン指標です。モデルに実環境で動作させなくても、埋め込みベクトルの整合性を計算するだけで下流タスクの成功率を推定できます。",
+    "key_advantage": "高コストな実機実験を行わず、さらにVLM（視覚言語モデル）をロボット向け行動モデル（VLA）へファインチューニングする前の段階で、有望なバックボーンモデルを安価かつ正確に事前選定できる点です。",
+    "saas_ideas": [
+      {
+        "idea_name": "RoboBench Offline",
+        "target_user": "ロボット基盤モデルや自律エージェントを開発するスタートアップおよび研究者",
+        "implementation": "アップロードされた画像表現モデルのチェックポイントと標準軌道データセットを入力とし、S^2スコアを自動計算してファインチューニング前の潜在性能をランキング表示するWebサービス。",
+        "monetization": "月額制API利用プラン、およびモデル評価数に応じた従量課金制。"
+      },
+      {
+        "idea_name": "VLA Backbone Scout",
+        "target_user": "OSSのVLMを活用してロボット・ドローン制御ポリシーを構築するエンジニア",
+        "implementation": "Hugging Face上のオープンモデル群からS^2指標に基づき「物理タスクに最も適した事前学習済みモデル」を推薦・比較できるスクリーニングプラットフォーム。",
+        "monetization": "高度な比較レポートの購入課金や、企業向けプライベートモデル評価機能のエンタープライズライセンス。"
+      }
+    ],
+    "search_keyword": "ロボット学習 身体性知能"
+  },
+  {
+    "url": "http://arxiv.org/abs/2610.31671v1",
+    "original_title": "A Unified Framework for Image-to-3D Part Generation via Variable Granularity",
+    "published_date": "2026-10-22",
+    "ja_title": "点や枠から自在に3Dパーツ化するFlexPart",
+    "tags": [
+      "画像から3D",
+      "パーツ分割生成",
+      "生成AI"
+    ],
+    "problem": "従来の画像から3Dを生成する手法は、モデル全体を一括生成するか、厳密な固定入力形式に依存していました。そのため、クリエイターが「この部分だけ粗い点や枠線で指定してパーツ化したい」といった作業段階ごとの柔軟な制御が困難でした。",
+    "mechanism": "FlexPartは、疎な点（Points）、バウンディングボックス、密なセグメンテーションマスクといった異なる粒度の幾何学的指示を、単一モデルで処理できる統一フレームワークです。ゲート付き適応変調（gated adaptive modulation）により異なる入力モダリティを融合し、柔軟なパーツ生成を可能にします。さらに、非対称幾何ガイダンス（asymmetric geometric guidance）を導入して強力な空間事前分布を活用し、粒度の違いを超えて幾何学的な整合性を担保しています。",
+    "key_advantage": "PartVerseXLベンチマークにおいて、マスク条件下でのパーツ再現誤差（Part CD）を既存のTripoSG+SAM3D比で16.6%、OmniPart比で10.5%削減しつつ、全体メッシュの品質を両立しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "PartForge 3D",
+        "target_user": "ゲームスタジオのインディー開発者や3Dモデラー",
+        "implementation": "Webブラウザ上で2Dコンセプトアートの一部を四角で囲む、またはクリックするだけで、特定パーツ（剣の柄、椅子の脚など）のみを即座に分解・高精度3Dアセット化できるエディタツール。",
+        "monetization": "月額サブスクリプション（生成クレジット制）およびゲームエンジン用エクスポートプラグインの有料販売。"
+      },
+      {
+        "idea_name": "ModuCraft AI",
+        "target_user": "3Dプリンター愛好家およびDIYハードウェア設計者",
+        "implementation": "実物の写真から「交換したい部品」だけを大まかにタップ指定し、3Dプリント用STLファイルとして単体抽出・寸法調整を可能にするモバイルアプリ。",
+        "monetization": "従量課金制（モデルのメッシュ最適化・STL出力1回あたり課金）またはProプランの月額課金。"
+      }
+    ],
+    "search_keyword": "3D generative models computer vision"
+  },
+  {
     "url": "http://arxiv.org/abs/2610.30129v1",
     "original_title": "Rethinking Video Autoencoders for Interactive World Models",
     "published_date": "2026-10-21",
