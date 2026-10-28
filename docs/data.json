@@ -1,5 +1,69 @@
 [
   {
+    "url": "http://arxiv.org/abs/2610.37666v1",
+    "original_title": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning",
+    "published_date": "2026-10-27",
+    "ja_title": "動画を見るだけでロボットが動く！ThinkWorld技術解説",
+    "tags": [
+      "ロボティクス",
+      "世界モデル",
+      "強化学習"
+    ],
+    "problem": "ロボット制御のVLA（Vision-Language-Action）モデルは、動作ラベル付きのロボット実データが大量に必要であり、汎用的な獲得コストが極めて高い課題がありました。一方、ウェブ上の膨大な人間動画は多様な環境を含みますが、ロボットにそのまま適用可能な具体的な行動ラベル（関節角度やトルク等）が含まれておらず、直接学習に活かすことが困難でした。",
+    "mechanism": "ThinkWorldは「Chain-of-Dynamics (CoD)」という離散的な運動トークン列を定義し、現在と未来の状態を繋ぐ共通の動力学推論スペースを構築します。初期学習後にモデルはCoDから生じる未来の視覚変化を予測し、その予測が実際の観測結果（状態遷移）と一致するほど報酬を得る強化学習を行います。これにより、動作ラベルのない一般的な人間動画からでも、物理的な状態変化を手がかりとして行動推論を自己強化することが可能になりました。",
+    "key_advantage": "人間が作業する動画などラベルなしの映像から直接ロボット制御モデルを強化できる「Human-to-Robot転移」を実現し、未知の環境やタスクに対しても高精度な汎化性能を達成しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "Vid2Robot（作業動画からの自動ロボット動作生成SaaS）",
+        "target_user": "工場の自動化を推進したい中小製造業やピッキング現場のエンジニア",
+        "implementation": "現場の作業員のスマートフォン撮影動画をアップロードすると、ThinkWorldの推論機構を用いて協働ロボット（URやDOBOTなど）用の制御マクロ/軌跡データを自動生成するクラウドAPI。",
+        "monetization": "動画解析時間や出力スクリプト数に応じた従量課金、または月額サブスクリプション制（月額3万円〜）。"
+      },
+      {
+        "idea_name": "SimuAction（ゲーム・アニメーション向け物理挙動シミュレータ）",
+        "target_user": "インディーゲーム開発者、CGクリエイター",
+        "implementation": "実写動画からChain-of-Dynamicsを抽出して3Dモデルやキャラクターの自然な環境相互作用（物を掴む、押すなどのインタラクション）を自動リギング・アニメーション化するBlender/Unityプラグイン。",
+        "monetization": "プラグインの買い切り販売、および高度な未来予測演算を行うクラウドレンダリングのクレジット課金。"
+      },
+      {
+        "idea_name": "SurgicalSkill AI（手術・手作業スキルの自動評価プラットフォーム）",
+        "target_user": "医療機関の研修生、精密機器の組立トレーニング施設",
+        "implementation": "熟練者の手元動画と研修生の動画のCoD（動力学連鎖）を比較し、物理的な無駄や未来予測とのズレをリアルタイムに検知してスコアリングと改善指導を行うWebアプリ。",
+        "monetization": "教育機関・病院向けの年間ライセンス（シート単位月額課金）。"
+      }
+    ],
+    "search_keyword": "ロボット 強化学習 世界モデル VLA"
+  },
+  {
+    "url": "http://arxiv.org/abs/2610.37668v1",
+    "original_title": "Honeycomb-Surfels: Compact Hexagonal Primitives for Efficient Scene Rendering and Reconstruction",
+    "published_date": "2026-10-27",
+    "ja_title": "六角形プリミティブで3D描画を倍速・超軽量化するHexels技術",
+    "tags": [
+      "3Dガウシアン",
+      "NeRF代替",
+      "リアルタイムレンダリング"
+    ],
+    "problem": "3D Gaussian Splattingなどの新視点合成・3D復元技術は、高品質な表現が可能な一方でメモリ消費量と計算コストが膨大でした。特にスマートフォンやWebブラウザのようなリソース制約の厳しい環境では、モデルサイズと描画負荷の高さが実用化の大きな障壁となっていました。",
+    "mechanism": "本研究では、従来の楕円ガウシアンの代わりに「Hexel」と呼ばれる平面六角形サーフェルを採用しました。蜂の巣構造のように隙間なく空間を充填できる幾何学的効率を活かし、少数の大きな六角形で平面領域を効率的にカバーします。さらに各六角形内部に1次のカラー空間勾配を持たせることで、プリミティブ数を劇的に減らしながら滑らかな陰影や外観変化を忠実に再現します。",
+    "key_advantage": "同一メモリ使用量の従来手法（2DGS）と比較して画質（PSNR）が最大7.38dB向上し、描画フレームレート（FPS）は2.31倍の高速化を達成しました。さらに3D復元誤差を28.9%削減しつつ学習時VRAM消費も抑えられるため、モバイルやエッジ環境での3D描画限界を大幅に押し広げます。",
+    "saas_ideas": [
+      {
+        "idea_name": "WebHex3D",
+        "target_user": "Webサイトで軽量な3Dモデルやインテリアを表示したいEC事業者・不動産会社",
+        "implementation": "スマホで撮影した動画からHexels形式の超軽量3Dアセットを自動生成し、Three.jsやWebGPU経由で低スペック端末でも瞬時にロード・60FPS表示可能なWeb埋め込みビューワーAPIを提供。",
+        "monetization": "月額の埋め込みアセット数とAPIトラフィック量に応じた従量課金制。"
+      },
+      {
+        "idea_name": "HexSpatial AR",
+        "target_user": "空間コンピューティング（Vision Pro/Meta Quest）向けに軽量ARアプリを開発する個人クリエイター",
+        "implementation": "Hexelsアルゴリズムを用いたUnity/Unreal Engine用プラグイン。シーンのメモリ消費を約半減させ、モバイルヘッドセットでもバッテリー消費と発熱を抑えながら高精細な空間ビデオ・空間キャプチャを再生可能にする。",
+        "monetization": "プラグインの買い切りライセンスおよび商用プロジェクトごとの年間サブスクリプション。"
+      }
+    ],
+    "search_keyword": "3D Gaussian Splatting リアルタイムレンダリング"
+  },
+  {
     "url": "http://arxiv.org/abs/2610.35865v1",
     "original_title": "Center-of-Mass Interpretation of Evolution Strategies",
     "published_date": "2026-10-26",
