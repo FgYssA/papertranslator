@@ -1,5 +1,63 @@
 [
   {
+    "url": "http://arxiv.org/abs/2610.40644v1",
+    "original_title": "Adaptive Scenario Generation for KL-DRO Around a Learned Density Model",
+    "published_date": "2026-10-29",
+    "ja_title": "未観測リスクに備える適応型最適化AI技術",
+    "tags": [
+      "数理最適化",
+      "機械学習",
+      "在庫・サプライチェーン"
+    ],
+    "problem": "実世界の最適化では過去データが少ない場合、未観測の事象をどう扱うかが重大な課題でした。過去データの重み付けだけでは新事象に対応できず、従来のロバスト最適化では非現実的な極端ケースまで考慮して過度に保守的な無駄なコストが発生していました。",
+    "mechanism": "本研究は、過去データから学習した確率密度モデルを中心とするKLダイバージェンス球を用いて、現実的に起こり得る未観測事象のみを敵対的シナリオとして考慮します。さらに、最適化計算と『現在の意思決定にとって最も痛手となるシナリオ』の重点サンプリングを交互に実行します。これにより、わずかなシナリオ数でも重要度の高いリスクをピンポイントで捉えながら最適解を高速に導出します。",
+    "key_advantage": "起こり得ない事象への過剰防衛を排除しつつ、データが希少な状況でも将来の未知の需要変動に対して既存手法を大幅に下回る低コスト運用を実現しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "ShiftGuard Inventory",
+        "target_user": "季節商品やトレンド品を扱うEC事業者やD2Cブランド",
+        "implementation": "過去の販売実績が数件しかない新商品に対し、類似商品の確率密度モデルを自動生成。Adaptive KL-DROを用いて過剰在庫と欠品リスクを最小化する発注・在庫数を毎朝レコメンドするAPIツール。",
+        "monetization": "月額固定＋在庫削減または機会損失削減に応じた成果報酬型レベニューシェア"
+      },
+      {
+        "idea_name": "GridMargin AI",
+        "target_user": "新電力事業者や蓄電池アグリゲーター",
+        "implementation": "天候不順や突発的な需要急増など、過去データにない異常気象シナリオを適応型サンプリングで自動シミュレーションし、卸電力市場での入札容量や蓄電スケジュールを自動最適化するダッシュボード。",
+        "monetization": "管理容量（MW）に応じた従量課金SaaS"
+      }
+    ],
+    "search_keyword": "分布頑健最適化 機械学習"
+  },
+  {
+    "url": "http://arxiv.org/abs/2610.40647v1",
+    "original_title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
+    "published_date": "2026-10-29",
+    "ja_title": "計算コストを4割削減する画像生成の新手法SpecSlot",
+    "tags": [
+      "画像生成AI",
+      "Transformer",
+      "計算効率化"
+    ],
+    "problem": "ピクセル空間で動作する画像生成Transformerは、解像度や微細ディテールを高めようとするとパッチ数（トークン数）が増大します。その結果、全トークン間で計算を行う大域的アテンションの計算コストが爆発し、高解像度画像の生成が高コストになる課題がありました。",
+    "mechanism": "SpecSlotは、画像の全体構造（低周波）は大域的な情報交換が必要だが、細かい質感（高周波）は局所的な処理で十分という特性に着目しました。各画像パッチを周波数帯ごとの複数スロットに分解し、大域的アテンションには低周波スロットのみを参加させます。高周波スロットは局所的な相互作用と空間ヘッドで補正することで、グローバルのシーケンス長を増やさずにディテールを精緻化します。",
+    "key_advantage": "高解像度（ImageNet-512）において従来比38.2%低い計算コストで同等の画質を達成し、Text-to-Imageでも約40%低い推論コストで既存モデル（JiT-B/8）の品質スコアを上回りました。",
+    "saas_ideas": [
+      {
+        "idea_name": "格安＆高速なローカル・エッジ向け画像生成API",
+        "target_user": "サーバーコストを抑えたいインディーゲーム開発者や中小規模のWeb制作会社",
+        "implementation": "SpecSlotアーキテクチャを採用した小型化Text-to-ImageモデルをサーバーレスGPU環境やローカル端末向けに最適化してデプロイし、軽量なREST/WebSocket APIとして提供する。",
+        "monetization": "月額定額プラン（一定回数まで無料、以降従量課金）およびオンプレミス向けライセンス販売"
+      },
+      {
+        "idea_name": "EC商品画像の超解像・テクスチャ補正プラグイン",
+        "target_user": "大量の低解像度な商品写真を美しく補正したいECサイト運営者",
+        "implementation": "低周波の構図を保ちつつ高周波テクスチャを局所復元するモデルをパイプライン化し、Shopifyなどの主要ECプラットフォーム向け一括画像鮮明化アプリとして提供する。",
+        "monetization": "画像処理枚数に応じた月額サブスクリプション課金"
+      }
+    ],
+    "search_keyword": "Vision Transformer 画像生成"
+  },
+  {
     "url": "http://arxiv.org/abs/2610.40649v1",
     "original_title": "Rethinking Neural Thickets Without Weight Perturbations",
     "published_date": "2026-10-29",
