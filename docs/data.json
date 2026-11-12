@@ -1,5 +1,63 @@
 [
   {
+    "url": "http://arxiv.org/abs/2611.14515v1",
+    "original_title": "AutoScaffold: AI-Guided Scaffolding for Reinforcement Learning of Language Models",
+    "published_date": "2026-11-10",
+    "ja_title": "AIがAIを育てる自動補助学習基盤AutoScaffold",
+    "tags": [
+      "強化学習",
+      "LLMファインチューニング",
+      "自己改善AI"
+    ],
+    "problem": "検証可能報酬を用いたLLMの強化学習（RLVR）では、試行錯誤の過程に有用な情報が豊富にあるにもかかわらず、最終的な成否のみが報酬として使われるため多くの知見が無駄になっていました。また、学習を補助するプロンプト戦略やヒントの設計は人手に頼っており、タスクごとに手動で最適化する必要がありました。",
+    "mechanism": "AutoScaffoldは、固定された教師AIが生徒AIの学習ログを定期的に監視・分析する仕組みを採用しています。教師AIは生徒のボトルネックを診断し、タスク群共通の「戦略」と難問向けの「個別ヒント」という2段階の足場（プロンプト）を動的に生成します。生徒AIの習熟度に応じてヒントの具体度を調整し、最終評価時には足場を完全に撤去してAI自体の地頭を鍛えます。",
+    "key_advantage": "人間による介入なしで、数学推論タスクにおいて従来手法（QuestA）の約3分の1の学習ステップでより高い精度を達成しました。さらにGPUカーネル最適化で高速な正解率が最大5.0ポイント向上、QAの完全一致精度で4.0ポイント向上など、足場を外した本番環境でも高い汎化性能を発揮します。",
+    "saas_ideas": [
+      {
+        "idea_name": "TutorCraft（教育向けAIチューター自己最適化エンジン）",
+        "target_user": "EdTech企業やプログラミングスクール運営者",
+        "implementation": "生徒の回答ログやデバッグ履歴を教師AIが分析し、正解を直接教えずに「つまずきポイント」に応じた動的な足場プロンプト（ヒント）を生成・最適化するAPIを提供する。",
+        "monetization": "月額サブスクリプションおよびAPIリクエスト数に応じた従量課金モデル"
+      },
+      {
+        "idea_name": "AgentBooster（自律型エージェント自動訓練プラットフォーム）",
+        "target_user": "社内業務自動化エージェントを開発するエンジニアやスタートアップ",
+        "implementation": "Web操作やAPI呼び出しで失敗したエージェントのログから、教師モデルがタスク固有の攻略ヒントを自動生成して再学習させ、自律完遂率を高めるMLOps基盤を提供する。",
+        "monetization": "エージェント訓練時間（GPU時間）に応じた課金とチーム向けライセンス"
+      }
+    ],
+    "search_keyword": "大規模言語モデル 強化学習"
+  },
+  {
+    "url": "http://arxiv.org/abs/2611.14516v1",
+    "original_title": "TorchCurves: Differentiable Parametric Curves",
+    "published_date": "2026-11-10",
+    "ja_title": "曲線が学習可能に！PyTorch微分可能曲線基盤",
+    "tags": [
+      "PyTorch",
+      "機械学習",
+      "スプライン曲線"
+    ],
+    "problem": "スプラインや多項式曲線は物理やグラフィックスで広く使われる一方、深層学習で入力値と曲線係数の双方をエンドツーエンドで微分可能にする汎用ツールが不足していました。また、近年注目されるKAN（Kolmogorov-Arnold Networks）などの実装では特殊なCUDAカーネルが必要となるケースが多く、環境構築や保守のハードルが高い課題がありました。",
+    "mechanism": "TorchCurvesは、B-splineやルジャンドル多項式基底を用いたベクトル値パラメータ曲線をPyTorchの学習可能プリミティブとして提供します。古典的な評価アルゴリズムを純粋なPyTorchのベクトル化演算として再実装し、追加のC++/CUDAカーネルなしで高速かつ安全な自動微分を可能にしました。曲線の制御係数は通常のレイヤー重みとして勾配降下法で最適化できるだけでなく、別ネットワークからの動的推論にも対応します。",
+    "key_advantage": "専用ハードウェアカーネルに依存せず純粋なPyTorchコードのみで動作するため環境移植性が極めて高く、従来のNumPy/SciPy比での並列バッチ処理による大幅な高速化と、KANや連続表現の容易な組み込みを両立した点です。",
+    "saas_ideas": [
+      {
+        "idea_name": "SmoothPath AI",
+        "target_user": "産業用ロボットや自動搬送車（AGV）の動作軌道を設計する制御エンジニア",
+        "implementation": "TorchCurvesの微分可能スプラインを活用し、障害物回避と最短時間・滑らかさ（最小加加速度）を同時に満たす軌道をエンドツーエンドで最適化・出力するWeb APIを構築。",
+        "monetization": "月額サブスクリプション型（月間軌道生成リクエスト数に応じた従量課金プラン）"
+      },
+      {
+        "idea_name": "AutoVector Motion",
+        "target_user": "Webデザイナーやモーショングラフィックス制作者",
+        "implementation": "ラフ画やキーフレーム間をTorchCurvesで滑らかな微分可能ベクターパスとして補間し、LottieやSVGアニメーションを数クリックで自動生成するSaaS。",
+        "monetization": "フリーミアムモデル（基本機能無料、商用エクスポートおよび無制限レンダリングは月額29ドル）"
+      }
+    ],
+    "search_keyword": "スプライン曲線 機械学習 PyTorch"
+  },
+  {
     "url": "http://arxiv.org/abs/2611.14518v1",
     "original_title": "Toward Foundation Detection Models via Example-Based Grounding in EM-DETR",
     "published_date": "2026-11-10",
