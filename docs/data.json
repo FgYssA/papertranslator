@@ -1,5 +1,63 @@
 [
   {
+    "url": "http://arxiv.org/abs/2611.17332v1",
+    "original_title": "ArchSpace: Recording, Reviewing, and Referencing LLM Architecture Research",
+    "published_date": "2026-11-12",
+    "ja_title": "LLM構造研究を加速する基盤ArchSpace",
+    "tags": [
+      "大規模言語モデル",
+      "スケーリング則",
+      "オープンサイエンス"
+    ],
+    "problem": "LLMのアーキテクチャ開発において、企業側は失敗した試みやその理由を公開せず、ノウハウがブラックボックス化していました。また、学術側は計算資源の不足と不揃いなベースラインにより、小規模実験の成果が大規模モデルで再現するか検証できない課題がありました。",
+    "mechanism": "ArchSpaceは、LLMアーキテクチャの実験結果と設計理由を記録・査読・参照できる公開型プラットフォームです。高コストな大規模学習を行う前に、小規模な実験結果からスケーリング則を用いて大規模化した際の損失を正確に予測します。さらに、Qwen3.5やOLMo3の標準ベースラインと学習レシピを無償提供し、誰もが公平かつ低コストに新アーキテクチャを検証できる環境を整えています。",
+    "key_advantage": "高価な計算資源を使わずに小規模実験データからスケーリング則で実運用規模の性能を予測・担保できる点、および失敗事例も含めたアーキテクチャ比較のオープンな標準基盤を確立した点です。",
+    "saas_ideas": [
+      {
+        "idea_name": "PredictScale AI",
+        "target_user": "自社モデルを事前学習・ファインチューニングしたいAIスタートアップ",
+        "implementation": "小規模な数エポックのGPU実験ログを投げるだけで、クラスタ全体で数千万円かかる学習の最終収束値とコストをスケーリング則ベースで試算・シミュレーションするダッシュボードツール。",
+        "monetization": "月額サブスクリプション課金およびシミュレーション実行回数に応じた従量課金制。"
+      },
+      {
+        "idea_name": "ModelBench Hub",
+        "target_user": "新しいAttention機構や活性化関数などを検証したい個人開発者・AI研究者",
+        "implementation": "統一された小型ベースライン上で新アイデアのコードを実行し、スケーリング予測や既存手法との自動差分ベンチマークレポートを生成・共有するコミュニティプラットフォーム。",
+        "monetization": "フリーミアムモデル。無料枠でコミュニティ共有、プライベート検証環境や専用GPU実行リソースを月額有料提供。"
+      }
+    ],
+    "search_keyword": "大規模言語モデル 機械学習 スケーリング則"
+  },
+  {
+    "url": "http://arxiv.org/abs/2611.17331v1",
+    "original_title": "TTB: Test-time Baking for Efficient Rendering of Decoder-only View Synthesis Models",
+    "published_date": "2026-11-12",
+    "ja_title": "3D新視点合成を23倍高速化する新技術TTB",
+    "tags": [
+      "新視点合成",
+      "Transformer推論高速化",
+      "マイクロSaaS"
+    ],
+    "problem": "Decoder-only型の視点合成モデルは3D形状復元なしで超高精度な描画を実現しますが、推論時の計算コストが膨大でした。また、従来のTest-Time Training（TTT）などの軽量化手法では計算量は削減できても画質が大きく劣化するトレードオフが存在していました。",
+    "mechanism": "本研究はシーン全体の視点相関情報を軽量なMLPに焼き込む「Test-Time Baking（TTB）」を提案しました。Attention全体を単に破棄するのではなく、Cross-View Attentionの入出力関係を事前蒸留するようにMLPへ高速学習させます。さらにカメラ情報と画像特徴トークンを分離することで、処理の不整合を解消し安定した推論を可能にしました。",
+    "key_advantage": "最高峰モデルと同等クラスの描画品質を維持したまま、レンダリング速度を最大23倍高速化することに成功しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "Instant3D Studio",
+        "target_user": "小規模EC事業者や個人ハンドメイド作家",
+        "implementation": "スマホで撮影した数枚の製品写真をアップロードすると、クラウド上でTTBによりミリ秒単位で自由視点3Dビューアを生成・Web埋め込みコードを発行するツール。",
+        "monetization": "月額制（月30アイテム生成無料、追加生成および高PV埋め込みは従量課金）"
+      },
+      {
+        "idea_name": "RealEstate Tour Lite",
+        "target_user": "街の不動産仲介業者や民泊ホスト",
+        "implementation": "部屋の数枚の写真から高品位なウォークスルー動画やインタラクティブ内見ビューをGPUコストを極限まで抑えてオンデマンド生成するSaaS。",
+        "monetization": "物件登録ごとのチケット制（1物件あたり500円〜）または不動産向け月額プラン"
+      }
+    ],
+    "search_keyword": "NeRF 3Dガウシアン ビジョンAI"
+  },
+  {
     "url": "http://arxiv.org/abs/2611.17334v1",
     "original_title": "Unbundling Multimodal Vision Encoding",
     "published_date": "2026-11-12",
