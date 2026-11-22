@@ -1,5 +1,69 @@
 [
   {
+    "url": "http://arxiv.org/abs/2611.26619v1",
+    "original_title": "TideCache: Efficient Hybrid LLM Serving with Transparent Cache Management and Layer-Wise Streaming",
+    "published_date": "2026-11-19",
+    "ja_title": "GPUメモリ激減！次世代ハイブリッドLLMの超高速サービング基盤",
+    "tags": [
+      "LLMインフラ",
+      "GPU最適化",
+      "推論高速化"
+    ],
+    "problem": "MambaやAttentionを組み合わせた次世代ハイブリッドLLMでは、層ごとに要求されるキャッシュ構造が異なりGPUメモリ（HBM）を激しく圧迫していました。コンテキスト長や並列数が増加するとキャッシュ枯渇が発生し、同時処理リクエスト数やレスポンス速度が大幅に低下する点が深刻なボトルネックでした。",
+    "mechanism": "TideCacheは、CPU-GPUスーパーチップ環境においてメモリを透過的かつ動的に融通する仕組みを導入しました。状態固定層の計算中に、次のAttention層で必要なKVキャッシュをホストメモリからGPU共有スロットへ事前読み込み（プリフェッチ）して計算と転送を重複させます。さらに、仮想アドレスを固定したまま物理メモリを動的に再配分することで、既存のLLM推論フレームワークの仕様を変えずにGPUメモリを最大限開放します。",
+    "key_advantage": "最新の推論エンジン（SGLang+HiCache）と比較して、AIエージェントのターン処理数を最大2.04倍に向上させ、トークン生成遅延（P50）を20〜59%削減、初動レスポンス時間（TTFT）を最大3.05倍高速化しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "AgentMesh",
+        "target_user": "自社サービスに自律型AIエージェントを組み込むSaaS開発企業",
+        "implementation": "TideCacheを組み込んだAPIプロキシを提供し、長大な会話履歴を持つエージェント処理を低遅延かつ低コストなGH200系クラウドで代行実行する。",
+        "monetization": "処理トークン数に応じた従量課金、および月額の優先帯域保証プラン。"
+      },
+      {
+        "idea_name": "DocuStream Inference",
+        "target_user": "法律・金融・医療などの数百万トークン級の長文文書を解析する事業者",
+        "implementation": "長文処理に強いハイブリッドLLMを安価なメモリ構成でホストし、低レイテンシでドキュメント検索・要約を行うマネージド推論API。",
+        "monetization": "月額固定枠＋APIリクエスト従量課金、プライベートクラウド展開向けエンタープライズライセンス。"
+      },
+      {
+        "idea_name": "CostCut LLM Gateway",
+        "target_user": "GPUクラウドのホスティングコスト増に悩むスタートアップのインフラエンジニア",
+        "implementation": "SGLang互換のドロップイン置換ミドルウェアとして提供し、クラスタ内のGPUメモリ利用効率を自動最適化してGPU台数を削減する。",
+        "monetization": "削減できたクラウドインフラ費用の20%を成功報酬として徴収するレベニューシェアモデル。"
+      }
+    ],
+    "search_keyword": "GPU メモリ 最適化 機械学習 推論"
+  },
+  {
+    "url": "http://arxiv.org/abs/2611.26624v1",
+    "original_title": "PlayCraft: Designing Engaging Games from Agent Play Experience",
+    "published_date": "2026-11-19",
+    "ja_title": "AIが遊んで直す！没頭できるゲーム自動改善フレームワーク",
+    "tags": [
+      "ゲーム開発",
+      "マルチエージェント",
+      "自動プレイテスト"
+    ],
+    "problem": "従来のAIによるゲーム生成では動作可能なゲームは作れるものの、プレイヤーが熱中できる「上達の楽しさ（マスタリー）」を備えた設計が困難でした。ゲームバランスや学習曲線の調整には人間による膨大なプレイテストと手動の修正が不可欠であり、開発コストが大きな障壁となっていました。",
+    "mechanism": "PlayCraftは「プレイ」と「改修」を反復する二者構造のエージェントフレームワークです。プレイヤーAIが画面映像をもとに実際にゲームをプレイし、試行錯誤の意思決定や反省点を詳細な体験ログとして記録します。改修担当のクラフターAIはそのログからプレイヤーの能力曲線や習熟度を分析し、目標とする成長プロセスに沿うようにゲームの難易度やルールを自律的に書き換えます。",
+    "key_advantage": "人間のテスターを介さずに、プレイヤーの習熟勾配（ラーニングスロープ）と上達の実感を自動的に最大化できる点です。異なる能力レベルのAIエージェントによる検証において、従来の生成手法と比較してより急峻な学習曲線と高い学習効果を安定して達成しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "GameTuner AI（インディーゲーム向け自動バランス調整API）",
+        "target_user": "小規模なインディーゲームスタジオおよび個人ゲーム開発者",
+        "implementation": "WebブラウザやUnity/Godotビルドをアップロードすると、視覚ベースの強化学習・VLMエージェントが自律プレイテストを実施。難易度の急激なスパイクや飽きやすいポイントを可視化し、パラメータの修正案やJSONパッチを自動提示する。",
+        "monetization": "月額サブスクリプション（月数回のテスト実行枠）＋長時間のテストレポート出力に応じた従量課金制。"
+      },
+      {
+        "idea_name": "UX-Loop（Web・SaaSオンボーディング自動改善ツール）",
+        "target_user": "プロダクトマネージャーおよびSaaS開発企業",
+        "implementation": "ゲームの「マスタリー設計」の思想をUI/UXに応用。仮想ユーザーAIにチュートリアルや初期タスクを実行させ、つまずいた操作や離脱ポイントを収集し、最適なUIガイドの出現頻度やステップ順序をA/Bテスト形式で自動調整する。",
+        "monetization": "プロダクト規模（月間アクティブユーザー数またはセッション数）に応じた階層別月額料金プラン。"
+      }
+    ],
+    "search_keyword": "強化学習 ゲームAI プレイテスト"
+  },
+  {
     "url": "http://arxiv.org/abs/2611.26627v1",
     "original_title": "RL Post-Training in Diffusion Transformers Is Activation Steering",
     "published_date": "2026-11-19",
