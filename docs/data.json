@@ -1,5 +1,63 @@
 [
   {
+    "url": "http://arxiv.org/abs/2611.30353v1",
+    "original_title": "PseuDRAGON: Knowledge-Guided Local LLMs for Financial-Data Pseudonymization in Closed Networks",
+    "published_date": "2026-11-23",
+    "ja_title": "閉域網LLMで金融データを高速・安全に仮名化する技術",
+    "tags": [
+      "プライバシー保護",
+      "ローカルLLM",
+      "データ仮名化"
+    ],
+    "problem": "金融などの機密データを扱う閉域環境では、短縮されたカラム名から個人情報（PII）を正しく判定し仮名化する作業に多大な専門家の手作業が必要でした。ローカルLLMで自動化を試みても、同じカラム名に対して出力がブレる非決定性や、誤判定によるPII漏洩リスクが課題となっていました。",
+    "mechanism": "PseuDRAGONは、LLMのモデル重みを固定したまま、確定した判定履歴や専門家による修正を外部ルールおよび完全一致辞書として管理・再利用します。未判定のカラムに対してのみ組織のポリシーや法令を参照する段階的検索を行い、LLMで仮名化方針を提案します。さらに承認の取り消し・修正に連動して派生ルールを自動再構築し、合成データテストで加工結果の整合性を検証します。",
+    "key_advantage": "過去の確定判定を優先再利用する履歴ファースト設計により、自動判定時間を平均83.0%削減しつつ、再利用時エラーゼロを達成しました。また未知のカラム名に対してPII見落としを抑止する厳格モードを備え、高い安全性と作業効率の両立を実現しています。",
+    "saas_ideas": [
+      {
+        "idea_name": "LocalMasker Desk",
+        "target_user": "外部クラウドにデータを送れない医療機関や金融機関の社内データ管理者",
+        "implementation": "Ollamaやllama.cppを利用した完全オフラインのデスクトップアプリ。カラム名やサンプル値からPIIを推定し、過去のマスキングルールを学習・適用して即座にダミー化・仮名化を実行する。",
+        "monetization": "月額サブスクリプション（ノードライセンス制）、エンタープライズ向けカスタマイズサポート"
+      },
+      {
+        "idea_name": "SchemaPrivacy Copilot",
+        "target_user": "自社サービスのDBスキーマ移行やログ分析基盤を構築するデータエンジニア",
+        "implementation": "DB接続時やDDL読み込み時に、省略されたカラム名（例: usr_adr, c_tel）のPII度合いを静的ルール＋ローカルLLMで判定し、自動でdbt/SQLのマスキング変換定義を生成するCLIツール。",
+        "monetization": "個人開発・OSSは無料、チーム共有機能やポリシー監査レポート出力機能を有料プランとして提供"
+      }
+    ],
+    "search_keyword": "データ仮名化 プライバシー保護"
+  },
+  {
+    "url": "http://arxiv.org/abs/2611.30354v1",
+    "original_title": "STAR: Structure-Aware Temporal Action Recovery for Point Supervised Temporal Action Localization",
+    "published_date": "2026-11-23",
+    "ja_title": "1点クリックだけで動画の行動区間を高精度検出するSTAR技術",
+    "tags": [
+      "動画解析",
+      "弱教師あり学習",
+      "行動検出"
+    ],
+    "problem": "長尺動画から特定アクションの開始・終了時刻を特定するには膨大なアノテーションコストがかかります。これに対し、1フレームだけを指定する「点教師あり学習」が注目されていますが、従来手法では動作の境界線が曖昧になり、区間が過度に長くなったり時間的構造が崩れたりする課題がありました。",
+    "mechanism": "STARは動作を「開始・中核・終了」という3段階の構造として捉え、前後のスニペット変化をアテンション機構で分析します。さらに「Rolebank」と呼ばれる構造再ランキング機構を導入し、不自然な提案区間を排除します。最後に検出器の予測結果をソフトラベルとしてフィードバックすることで、擬似ラベルの品質を反復的に自己改善していきます。",
+    "key_advantage": "高コストな全区間アノテーション不要で、点指定のみでTHUMOS'14ベンチマークで67.2%、ActivityNet-1.3で31.7%という従来手法を大幅に超える最高精度を達成しました。",
+    "saas_ideas": [
+      {
+        "idea_name": "QuickClip AI（スポーツ・ゲームハイライト自動生成ツール）",
+        "target_user": "動画配信者、プロチームのアナリスト、スポーツスクール運営者",
+        "implementation": "得点や技が決まった瞬間を1タップ記録するだけで、STARアルゴリズムがそのプレーの助走からフォロースルーまで正確な区間を自動抽出し、ショート動画やSNS用クリップとして即座に出力するWebツール。",
+        "monetization": "月額サブスクリプション（処理動画時間に応じたTier制）および動画編集プラグインの買い切り販売。"
+      },
+      {
+        "idea_name": "WorkTrace（製造・現場作業の自動標準時間計測SaaS）",
+        "target_user": "工場の工程管理者、飲食店チェーンのオペレーション改善担当者",
+        "implementation": "作業員の手順動画から特定キーフレームを数カ所指定するだけで、各タスクの正確な開始・終了時間を自動切り出し、作業工数のばらつきやムダ時間を可視化するダッシュボードを提供。",
+        "monetization": "1カメラあたり月額固定のB2B SaaSモデル、初期導入時の工程分析コンサルティング費用。"
+      }
+    ],
+    "search_keyword": "コンピュータビジョン 動画解析 ディープラーニング Python"
+  },
+  {
     "url": "http://arxiv.org/abs/2611.26615v1",
     "original_title": "ScaleWorld: High-Resolution World Generation through Shared Prediction and Refinement",
     "published_date": "2026-11-19",
