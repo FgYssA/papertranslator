@@ -1,5 +1,69 @@
 [
   {
+    "url": "http://arxiv.org/abs/2611.32970v1",
+    "original_title": "FocusAnchor: Zero-Shot Metric Depth by Anchoring a Depth Foundation Prior to Focus Cues",
+    "published_date": "2026-11-24",
+    "ja_title": "スマホのピント送りから高精度実寸深度を推定するFocusAnchor",
+    "tags": [
+      "コンピュータービジョン",
+      "深度推定",
+      "カメラアプリ"
+    ],
+    "problem": "従来のフォーカス合成による深度推定（Depth from Focus）は、ピントの手がかりが弱いテクスチャのない領域や、撮影枚数が少ない環境、未知のカメラ特性下において精度が著しく低下するという課題がありました。また、一般的な単眼深度推定モデルでは相対的な凹凸しか分からず、現実の絶対距離（メートル単位）の特定が困難でした。",
+    "mechanism": "FocusAnchorは、凍結された深度基底モデルによる大まかな幾何構造と、ピント情報から得られる実寸スケールを反復的に統合するリカレントモデルです。テクスチャのある領域から正確なメートル単位のスケールを検出し、その情報をテクスチャが乏しい領域へ幾何構造を保ったまま伝播させます。さらに、学習時に多様なカメラパラメータの合成スタックとスライスごとの独立ノイズ、可変枚数学習（FocusAnchor-flex）を導入し、汎用性を高めています。",
+    "key_advantage": "未知のカメラ環境におけるゼロショット評価の全5ベンチマークで最高精度を記録しました。ファインチューニング時でNYU Depth V2の絶対相対誤差（AbsRel）を従来比36%削減し、FocusAnchor-flexでは撮影枚数を40%削減しながらも従来手法（FOSSA ViT-B）を上回る実寸深度推定を実現しています。",
+    "saas_ideas": [
+      {
+        "idea_name": "FocusMeasure Pro（スマホ実寸計測API）",
+        "target_user": "引っ越し業者、インテリアデザイナー、不動産仲介業者",
+        "implementation": "スマホカメラのフォーカスブラケティング機能で数枚の連写画像を撮影し、クラウドAPIまたはエッジモデルで実寸メートル深度マップを生成。家具の配置シミュレーションや間取り採寸を即座に可能にする。",
+        "monetization": "月額従量課金制のB2B API（月間リクエスト数に応じた課金）およびモバイルSDKのライセンス提供。"
+      },
+      {
+        "idea_name": "E-Commerce 3D Object Scanner（物撮り3DスキャナーSaaS）",
+        "target_user": "ECサイト運営者、フリマアプリ出品者、オークション出品者",
+        "implementation": "一眼レフやスマホでピント位置を変えて撮影した数枚の製品写真から、LiDAR不要で正確な3Dモデルおよび寸法データを自動出力するWebプラットフォーム。",
+        "monetization": "3Dアセット生成数に応じたチケット制課金、および月額サブスクリプションプラン。"
+      },
+      {
+        "idea_name": "MicroInspection 3D（顕微鏡・マクロ検査ツール）",
+        "target_user": "精密機器・基板メーカーの品質検査エンジニア、研究機関",
+        "implementation": "既存の光学顕微鏡やマクロカメラの焦点合成スタック画像を取り込み、微細な傷やはんだの盛り上がりを高精度なミリ・マイクロメートル単位の3Dデータとして可視化・異常検知するデスクトップ/Webアプリ。",
+        "monetization": "年間ソフトウェアライセンスおよびエンタープライズ向けのオンプレミス導入支援。"
+      }
+    ],
+    "search_keyword": "Depth Estimation Computer Vision"
+  },
+  {
+    "url": "http://arxiv.org/abs/2611.32971v1",
+    "original_title": "Teaching Time Without Losing General Retrieval: Adapting Multimodal Embeddings for Time-Sensitive Video Retrieval",
+    "published_date": "2026-11-24",
+    "ja_title": "動画の時系列・逆再生も見抜く埋め込みAI技術",
+    "tags": [
+      "動画検索",
+      "マルチモーダルAI",
+      "ベクトル検索"
+    ],
+    "problem": "マルチモーダルLLMによる動画検索は、背景や物体などの静的なシーン認識には優れていますが、動作の順序や前後関係といった時間の流れを捉えるのが苦手でした。従来手法で時間認識を強化しようと追加学習を行うと、一般的な検索精度が大幅に低下し、複数モデルの併用が必要になるという課題がありました。",
+    "mechanism": "本研究は、わずか0.15%のパラメータを中間層のみで調整する『Middle-layer LoRA』を導入し、時間情報が集約される層に絞って学習を行います。さらに、通常再生と逆再生の動画埋め込みをテキストの意味差に合わせて引き離す『Pair loss』を採用しました。加えて、出力ベクトルが元のモデルから離れすぎないよう抑える『Keep loss』を組み込むことで、一般ドメインのデータを再学習させることなく元の検索性能を維持しています。",
+    "key_advantage": "モデルの単一化と1クリップ1ベクトルを維持したまま、一般的な検索精度（R@1: 58.4）を全く損なわずに、正逆クリップを含む高難度な時間敏感検索の正解率を55.5%から63.2%へと大きく引き上げました。",
+    "saas_ideas": [
+      {
+        "idea_name": "ActionFinder（製造・防犯向け作業順序逸脱検知API）",
+        "target_user": "工場の安全管理者や監視カメラソリューション開発企業",
+        "implementation": "中間層LoRAを適用した動画埋め込みモデルを組み込み、監視カメラの映像から「ボルトを締めた後にカバーを装着したか（逆順になっていないか）」等の微細なアクション順序を自然言語で瞬時にインデックス・照合するAPI。",
+        "monetization": "月額の基本利用料＋動画解析時間（分単位）または検索APIリクエスト数に応じた従量課金制。"
+      },
+      {
+        "idea_name": "ClipRewind（動画編集者向けアクション逆引き検索プラグイン）",
+        "target_user": "YouTuber、プロの映像編集者、ストック動画プラットフォーム",
+        "implementation": "Premiere ProやDaVinci Resolveの拡張機能として提供。「ボールを投げる瞬間」と「ボールをキャッチする瞬間」など、同一シーン内の動作の方向性を正確に区別して目的のカットをテキスト入力だけで数秒で特定する機能。",
+        "monetization": "月額サブスクリプション（月額1,980円〜）およびチーム向けエンタープライズライセンス。"
+      }
+    ],
+    "search_keyword": "マルチモーダル 埋め込み ベクトル検索 動画認識"
+  },
+  {
     "url": "http://arxiv.org/abs/2611.30353v1",
     "original_title": "PseuDRAGON: Knowledge-Guided Local LLMs for Financial-Data Pseudonymization in Closed Networks",
     "published_date": "2026-11-23",
